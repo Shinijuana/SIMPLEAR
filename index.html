@@ -1,43 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Simple AR - A Web based AR for A-Frame</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  </head>
-  <body>
-    <script
-      src="https://cdn.jsdelivr.net/gh/akbartus/Simple-AR/dist/0.1.2/simple-ar.min.js"
-      onload="onWasmLoaded();"
-    ></script>
-    <a-scene
-      xrweb="disableWorldTracking: false; allowedDevices: any"
-           color-space="sRGB" 
-           renderer="colorManagement: true, physicallyCorrectLights" 
-           vr-mode-ui="enabled: false" 
-           embedded
-           device-orientation-permission-ui="enabled: false">
-      
-      <a-assets>
-      <a-asset-item id="busto" src="https://raw.githack.com/Shinijuana/MARKERTHREE/main/assets/busto%20emilio.gltf"></a-asset-item>
-      <a-asset-item id="web" src="assets/web.glb"></a-asset-item>
-      <a-asset-item id="phone" src="assets/phone.glb"></a-asset-item>
-      <a-asset-item id="mail" src="assets/mail.glb"></a-asset-item>
-      <a-asset-item id="vcf" src="assets/vcf.glb"></a-asset-item>
-      <img id="balloonTexture" src="assets/balloon.png" />
-        
+<head>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@0.4.2/dist/mindar.prod-min.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="aframe.js"></script>  <!-- Reference to your modified AFrame script -->
+</head>
+
+<body>
+  <a-scene mindar-image="imageTargetSrc: #target-image; stayVisible: true; autoStart: true;" vr-mode-ui="enabled: false">
+    <a-assets>
+      <img id="target-image" src="dos.mind">
     </a-assets>
-      <a-entity simple-ar="src: assets/markerdos.jpg; minCutOffValue: 1; betaValue:0.1;">
-        <a-entity
-        id="model"
-        rotation="90 0 0" 
-        position="0 0 0" 
-        scale="2 2 2" 
-        gltf-model="#busto"
-        class="clickable"
-        animation__move="property: position; from: 0 0 0.5; to: 0 0 .9; dur: 1680; loop: true; dir: alternate; easing: easeInOutSine;">
-      </a-entity>
-      </a-entity>
-      <a-camera position="0 0 0"></a-camera>
-    </a-scene>
-  </body>
-</html>
+
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-box id="box" position="0 0 0" color="blue"></a-box>
+    </a-entity>
+
+    <a-camera></a-camera>
+  </a-scene>
+</body>
